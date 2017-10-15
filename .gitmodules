@@ -1,0 +1,3 @@
+[submodule "src/driver/GPIO"]
+	path = src/driver/GPIO
+	url = https://github.com/bobvann/GPIOSim.git
