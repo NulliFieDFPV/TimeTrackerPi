@@ -43,14 +43,13 @@ if ser.isOpen():
         #    print(data)
 
 
-        time.sleep((2))
+        time.sleep(1)
 
         if booRaw:
             ser.write("?")
 
-            if (ser.inWaiting() > 0):
-                data = ser.read(ser.inWaiting())
-                print(data)
+            x = ser.readline()
+            print(x)
 
             booRaw=False
         else:
