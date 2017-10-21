@@ -5,7 +5,7 @@ strSerPort = "/dev/ttyS1"
 
 
 ser= serial.Serial(port=strSerPort, baudrate=250000)
-ser.open()
+#ser.open()
 
 while True:
 
