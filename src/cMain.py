@@ -11,7 +11,7 @@ time.sleep(3)
 booRaw=True
 
 if ser.isOpen():
-
+    print("Serial is open")
     ser.write("f 0 5658")
     if (ser.inWaiting() > 0):
         data = ser.read(ser.inWaiting())
@@ -27,13 +27,20 @@ if ser.isOpen():
         data = ser.read(ser.inWaiting())
         print(data)
 
+
     while True:
 
-        print("Serial is open")
+        print(" ")
 
-        if (ser.inWaiting()>0):
-            data=ser.read(ser.inWaiting())
-            print(data)
+        print("readline")
+        x=ser.readline()
+        print(x)
+
+        print(" ")
+
+        #if (ser.inWaiting()>0):
+        #    data=ser.read(ser.inWaiting())
+        #    print(data)
 
 
         time.sleep((2))
@@ -48,6 +55,8 @@ if ser.isOpen():
             booRaw=False
         else:
             booRaw=True
+
+        print(" ")
 
 else:
     print("Serial is not open")
