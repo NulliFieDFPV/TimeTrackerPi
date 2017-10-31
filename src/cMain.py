@@ -9,30 +9,37 @@ ser= serial.Serial()
 ser.baudrate=intBaudRate
 ser.port=strSerPort
 
-ser.close()
-ser.open()
-
-sio= io.TextIOWrapper(io.BufferedRWPair(ser, ser))
+if ser.isOpen()==False:
+    ser.open()
 
 booRaw=True
 
-if sio.isOpen():
+if ser.isOpen():
     print("Serial is open")
+    time.sleep(3)
+    ser.write("r\n")
+    print("n")
 
-    sio.write(u's')
+    ser.write("n\n")
+    time.sleep(6)
+    print("m")
+    time.sleep(5)
+    ser.write("m\n")
+
+    ser.write("?\n")
 
     print("RX 0 setzen")
-    sio.write(u'f 0 5880')
-
+    ser.write('f 0 5658\n')
+   
     print("RX 1 setzen")
-    sio.write(u'f 1 5880')
+    ser.write('f 1 5658\n')
 
     print("RX 2 setzen")
-    sio.write(u'f 2 5880')
+    ser.write('f 2 5658\n')
 
     while True:
         time.sleep(5)
-        sio.write(u"?")
+        ser.write("?\n")
         print("Status?")
 
 else:
