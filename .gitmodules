@@ -4,3 +4,6 @@
 [submodule "src/driver/pwm"]
 	path = src/driver/pwm
 	url = https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library.git
+[submodule "src/driver/pypwm"]
+	path = src/driver/pypwm
+	url = https://github.com/adafruit/Adafruit_Python_PCA9685.git
