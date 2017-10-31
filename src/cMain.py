@@ -1,50 +1,45 @@
 import serial
 import time
+import io
 
 strSerPort="/dev/ttyS1"
+intBaudRate=250000
 
-ser= serial.Serial(port=strSerPort, baudrate=250000)
-ser.close()
-ser.open()
+ser= serial.Serial()
+ser.baudrate=intBaudRate
+ser.port=strSerPort
 
-time.sleep(3)
+if ser.isOpen()==False:
+    ser.open()
+
 booRaw=True
 
 if ser.isOpen():
     print("Serial is open")
-
-    print("set calib")
-    #ser.write("s\n")
+    time.sleep(3)
     ser.write("r\n")
-    #ser.flush()
-    print("RX 0 setzen")
-    ser.write("f 0 5658\n")
-    #ser.flush()
- 
-    #if (ser.inWaiting() > 0):
-    #    data = ser.read(ser.inWaiting())
-    #    print(data)
+    print("n")
 
+    ser.write("n\n")
+    time.sleep(6)
+    print("m")
+    time.sleep(5)
+    ser.write("m\n")
+
+    ser.write("?\n")
+
+    print("RX 0 setzen")
+    ser.write('f 0 5658\n')
+   
     print("RX 1 setzen")
-    ser.write("f 1 5880\n")
- 
-    #ser.flush()
-    #if (ser.inWaiting() > 0):
-    #    data = ser.read(ser.inWaiting())
-    #    print(data)
+    ser.write('f 1 5658\n')
+
     print("RX 2 setzen")
-    ser.write("f 2 5658\n")
-    ser.flush()
-     #if (ser.inWaiting() > 0):
-    #    data = ser.read(ser.inWaiting())
-    #    print(data)
+    ser.write('f 2 5658\n')
 
     while True:
         time.sleep(5)
-        ser.write("?")
-        ser.flush()
-        #data = ser.readline()
-	#print data
-
+        ser.write("?\n")
+        print("Status?")
 else:
     print("Serial is not open")
